@@ -58,11 +58,13 @@ const zooAnimals = [
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  const  animalNames = [];
-    zooAnimals.forEach(element =>{
-      animalNames.push(`name: ${element.animal_name}, scientific: ${element.scientific_name}`)
-    })
-
+  function animalNames(array){
+    const displayNames = [];
+    array.forEach(function(item){
+      displayNames.push(`name: ${item.animal_name}, scientific: ${item.scientific_name}`)
+    });
+    return displayNames
+  }
   
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
@@ -71,18 +73,23 @@ const zooAnimals = [
   For example: ['jackal, asiatic', .....]
   */
 
-  const lowerCaseNames = zooAnimals.map(obj => obj.animal_name.toLowerCase());
-  console.log(lowerCaseNames) ;
+  function lowerCaseNames(array){
+    const lowerCases = array.map(function(item){
+      return item.animal_name.toLowerCase();
+    });
+    return lowerCases
+  }
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
-
-  const lowPopulationAnimals = zooAnimals.filter(obj => {
-    return obj.population < 5;
-  });
-  console.log(lowPopulationAnimals);
+  function lowPopulationAnimals(array){
+    const lowPopulationAnimals = array.filter(function(item){
+      return item.population < 5;
+    });
+    return lowPopulationAnimals
+  }
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -90,12 +97,13 @@ const zooAnimals = [
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
- const USApop = zooAnimals.reduce((previous, current) => {
-return previous + current.population;  
+  function USApop(number){
+  const USApop = number.reduce (function(acc,item){
+    return acc + item.population;
   }, 0)
-  console.log(USApop);
+  return USApop;
    
-  
+}
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
     * Use the higher-order function consume with 3 parameters: a, b and cb
@@ -187,12 +195,13 @@ const cuboid = new CuboidMaker({
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
- console.log(cuboid.volume()); // 100
- console.log(cuboid.surfaceArea()); // 130
+ //console.log(cuboid.volume()); // 100
+ //console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
+
 class CuboidMakerTwo{
   constructor (object){
   this.length = object.length;
@@ -204,10 +213,10 @@ volume () {
 }
 surfaceArea (){
   return 2 * ((this.length * this.width) + (this.length * this.height ) +(this.width * this.height));
-}}
-
+}
+}
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
+//\\ console.log(cuboidTwo.volume()); // 100
  //console.log(cuboidTwo.surfaceArea()); // 130
 
 
